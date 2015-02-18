@@ -23,3 +23,7 @@ class Engine(Base):
 
 	# Relationships
 	games = sqlalchemy.orm.relationship("Game", backref="engine", foreign_keys="Game.engine_id")
+
+	@orm.reconstructor
+	def init_on_load(self):
+		self.__class__ = eval("Engine%s" % (self.code.upper()))
