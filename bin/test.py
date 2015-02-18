@@ -20,22 +20,23 @@ import ConfigParser
 from twisted.internet import reactor
 from twisted.web import static, server
 
+import sqlalchemy
+import sqlalchemy.sql
+import sqlalchemy.ext.declarative
+import sqlalchemy.orm
+import time
+
+# Set up SQLAlchemy
+Base = sqlalchemy.ext.declarative.declarative_base()
+
+
 # Load the config file first
 config = ConfigParser.ConfigParser()
 config.read("%s/hlstats.ini" %(CFGDIR))
 
-# HLStats imports
-from LogServer import LogServer
+engine = sqlalchemy.create_engine(config.get('database', 'uri'))
 
-logserver = LogServer()
-logserver.config = config 
+from OrganizedModel import *
 
-# Setup Web Server
-root = static.File(WEBDIR)
-reactor.listenTCP(config.getint('http', 'port'), server.Site(root))
-
-# Setup Log Server
-reactor.listenUDP(27501, logserver)
-
-# Run all
-reactor.run()
+print Base.metadata.sorted_tables
+Base.metadata.create_all(engine)

@@ -9,7 +9,7 @@ import time
 Base = sqlalchemy.ext.declarative.declarative_base()
 
 #HLStats-py imports
-import GamePlayer
+from GamePlayer import *
 
 class Player(Base):
 
