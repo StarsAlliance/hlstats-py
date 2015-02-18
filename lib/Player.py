@@ -9,13 +9,12 @@ import time
 Base = sqlalchemy.ext.declarative.declarative_base()
 
 #HLStats-py imports
-import GameMap
-import GameServerPlayer
+import GamePlayer
 
 class Player(Base):
 
 	# Table structure
-	__tablename__ = 'games_servers'
+	__tablename__ = 'players'
 	id = sqlalchemy.Column(sqlalchemy.types.BigInteger, primary_key=True)
 	unique_id = sqlalchemy.Column(sqlalchemy.String(length=32))
 	rounds = sqlalchemy.Column(sqlalchemy.types.Integer)

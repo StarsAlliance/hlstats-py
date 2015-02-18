@@ -23,9 +23,9 @@ class GamePlayer(Base):
 	# Table structure
 	__tablename__ = 'games_players'
 	id = sqlalchemy.Column(sqlalchemy.types.BigInteger, primary_key=True)
-	player_id
-	game_id
-	name
+	player_id = sqlalchemy.Column(sqlalchemy.types.BigInteger, sqlalchemy.ForeignKey('players.id'))
+	game_id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, sqlalchemy.ForeignKey('games.id'))
+	name = sqlalchemy.Column(sqlalchemy.types.String(length=45))
 	rounds = sqlalchemy.Column(sqlalchemy.types.Integer)
 	play_time = sqlalchemy.Column(sqlalchemy.types.Integer)
 	kills = sqlalchemy.Column(sqlalchemy.types.Integer)

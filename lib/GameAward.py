@@ -10,7 +10,7 @@ Base = sqlalchemy.ext.declarative.declarative_base()
 
 #HLStats-py imports
 import GamePlayer
-
+import GameAwardRibbon
 
 class GameAward(Base):
 
