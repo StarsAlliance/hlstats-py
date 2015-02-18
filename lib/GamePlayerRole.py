@@ -11,19 +11,16 @@ Base = sqlalchemy.ext.declarative.declarative_base()
 # HLStats-py Imports
 import Game
 import GamePlayer
-import GameMap
-import GamePlayerMapWeapon
+import GameRole
 
-class GamePlayerMap(Base):
+class GamePlayerRole(Base):
 
 	# Table structure
 	__tablename__ = 'games_players_maps'
 	id = sqlalchemy.Column(sqlalchemy.types.Integer, primary_key=True)
 	game_id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, sqlalchemy.ForeignKey('games.id'))
 	player_id = sqlalchemy.Column(sqlalchemy.types.BigInteger, sqlalchemy.ForeignKey('games_players.id')) 
-	map_id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, sqlalchemy.ForeignKey('games_maps.id'))
-	rounds = sqlalchemy.Column(sqlalchemy.types.Integer)
-	play_time = sqlalchemy.Column(sqlalchemy.types.Integer)
+	role_id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, sqlalchemy.ForeignKey('games_roles.id'))
 	kills = sqlalchemy.Column(sqlalchemy.types.Integer)
 	team_kills = sqlalchemy.Column(sqlalchemy.types.Integer)
 	deaths = sqlalchemy.Column(sqlalchemy.types.Integer)
@@ -42,5 +39,4 @@ class GamePlayerMap(Base):
 	# Relationships
 	game = sqlalchemy.orm.relationship("Game", foreign_keys=[game_id])
 	player = sqlalchemy.orm.relationship("GamePlayer", foreign_keys=[player_id])
-	map = sqlalchemy.orm.relationship("GameMap", foreign_keys=[map_id])
-	weapons = sqlalchemy.orm.relationship("GamePlayerMapWeapon", backref=sqlalchemy.orm.backref("playermap", uselist=False), foreign_keys="GamePlayerMapWeapon.map_id")
+	role = sqlalchemy.orm.relationship("GameRole", foreign_keys=[role_id])
