@@ -1,0 +1,6 @@
+THIS SOFTWARE DOES NOT WORK YET!
+
+1. Create Database from sql/hlstats-py.sql
+2. Copy etc/hlstats.example.ini to etc/hlstats.ini
+3. Modify DB Connection string in etc/hlstats.ini
+4. Run bin/hlstats 
