@@ -8,10 +8,12 @@ import time
 
 class LogParser(threading.Thread):
 
-	def __init__(self, server):
+	def __init__(self, server, db):
 		super(self.__class__,self).__init__()
 		self.queue = Queue.Queue()
 		self.server = server
+		self.db = db
+		self.go = True
 		
 	def run(self):
 		while self.go:

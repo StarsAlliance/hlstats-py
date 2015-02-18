@@ -188,7 +188,7 @@ class GamePlayer(Base):
 	death_streak = sqlalchemy.Column(sqlalchemy.types.SmallInteger)
 	ip =  sqlalchemy.Column(sqlalchemy.types.String(length=15))
 	rank_id = sqlalchemy.Column(sqlalchemy.types.SmallInteger)
-	clan_id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, sqlalchemy.ForeignKey('games_clans.id'))
+	clan_id = sqlalchemy.Column(sqlalchemy.types.BigInteger, sqlalchemy.ForeignKey('games_clans.id'))
 	kills_delta = sqlalchemy.Column(sqlalchemy.types.Integer)
 	deaths_delta = sqlalchemy.Column(sqlalchemy.types.Integer)
 	suicides_delta = sqlalchemy.Column(sqlalchemy.types.Integer)
@@ -212,7 +212,7 @@ class GamePlayer(Base):
 	maps = sqlalchemy.orm.relationship("GamePlayerMap", backref=sqlalchemy.orm.backref("player", uselist=False), foreign_keys="GamePlayerMap.player_id")
 	maps_weapons = sqlalchemy.orm.relationship("GamePlayerMapWeapon", backref=sqlalchemy.orm.backref("player", uselist=False), foreign_keys="GamePlayerMapWeapon.player_id")
 	roles =  sqlalchemy.orm.relationship("GamePlayerRole", backref=sqlalchemy.orm.backref("player", uselist=False), foreign_keys="GamePlayerRole.player_id") 
-	teamactions =  sqlalchemy.orm.relationship("GamePlayerTeamaction", backref=sqlalchemy.orm.backref("player", uselist=False), foreign_keys="GamePlayerTeamAction.player_id")
+	teamactions =  sqlalchemy.orm.relationship("GamePlayerTeamaction", backref=sqlalchemy.orm.backref("player", uselist=False), foreign_keys="GamePlayerTeamaction.player_id")
 	weapons = sqlalchemy.orm.relationship("GamePlayerWeapon", backref=sqlalchemy.orm.backref("player", uselist=False), foreign_keys="GamePlayerWeapon.player_id") 
 
 class GameAward(Base):
@@ -271,8 +271,6 @@ class GameWeapon(Base):
 	hpk = sqlalchemy.Column(sqlalchemy.types.Float)
 	created_at = sqlalchemy.Column(sqlalchemy.types.BigInteger, default=sqlalchemy.func.unix_timestamp(), onupdate=sqlalchemy.func.unix_timestamp())
 	updated_at = sqlalchemy.Column(sqlalchemy.types.BigInteger, default=sqlalchemy.func.unix_timestamp())
-
-	game = sqlalchemy.orm.relationship("Game", foreign_keys=[game_id])
 
 class GameMap(Base):
 
@@ -375,11 +373,6 @@ class GameHeatmapData(Base):
 	victim_y = sqlalchemy.Column(sqlalchemy.types.Integer)
 	timestamp = sqlalchemy.Column(sqlalchemy.types.BigInteger)
 
-	# Relationsips
-	player = sqlalchemy.orm.relationship("GamePlayer", foreign_keys=[player_id]) 
-	victim = sqlalchemy.orm.relationship("GamePlayer", foreign_keys=[victim_id])
-	action = sqlalchemy.orm.relationship("GameAction", foreign_keys=[action_id])
-
 class GamePlayerAction(Base):
 
 	# Table structure
@@ -394,12 +387,6 @@ class GamePlayerAction(Base):
 	count_delta = sqlalchemy.Column(sqlalchemy.types.Integer)
 	count_reset = sqlalchemy.Column(sqlalchemy.types.BigInteger)
 
-	# Relationsips
-	game = sqlalchemy.orm.relationship("Game", foreign_keys=[game_id])
-	player = sqlalchemy.orm.relationship("GamePlayer", foreign_keys=[player_id]) 
-	action = sqlalchemy.orm.relationship("GameAction", foreign_keys=[action_id])
-	map = sqlalchemy.orm.relationship("GameMap", foreign_keys=[map_id])
-
 class GamePlayerAlias(Base):
 
 	# Table structure
@@ -413,10 +400,6 @@ class GamePlayerAlias(Base):
 	updated_at = sqlalchemy.Column(sqlalchemy.types.BigInteger, default=sqlalchemy.func.unix_timestamp())
 
 
-	# Relationsips
-	game = sqlalchemy.orm.relationship("Game", foreign_keys=[game_id])
-	player = sqlalchemy.orm.relationship("GamePlayer", foreign_keys=[player_id]) 
-
 class GamePlayerAward(Base):
 
 	# Table structure
@@ -428,11 +411,6 @@ class GamePlayerAward(Base):
 	date = sqlalchemy.Column(sqlalchemy.types.Date)
 	count = sqlalchemy.Column(sqlalchemy.types.SmallInteger)
 
-	# Relationsips
-	game = sqlalchemy.orm.relationship("Game", foreign_keys=[game_id])
-	player = sqlalchemy.orm.relationship("GamePlayer", foreign_keys=[player_id]) 
-	award = sqlalchemy.orm.relationship("GameAward", foreign_keys=[award_id])
-
 class GamePlayerAwardRibbon(Base):
 
 	# Table structure
@@ -441,11 +419,6 @@ class GamePlayerAwardRibbon(Base):
 	game_id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, sqlalchemy.ForeignKey('games.id'))
 	player_id = sqlalchemy.Column(sqlalchemy.types.BigInteger, sqlalchemy.ForeignKey('games_players.id'))
 	ribbon_id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, sqlalchemy.ForeignKey('games_awards_ribbons.id'))
-
-	# Relationsips
-	game = sqlalchemy.orm.relationship("Game", foreign_keys=[game_id])
-	player = sqlalchemy.orm.relationship("GamePlayer", foreign_keys=[player_id]) 
-	ribbon = sqlalchemy.orm.relationship("GameAwardRibbon", foreign_keys=[ribbon_id])
 
 class GamePlayerMap(Base):
 
@@ -473,10 +446,7 @@ class GamePlayerMap(Base):
 	updated_at = sqlalchemy.Column(sqlalchemy.types.BigInteger, default=sqlalchemy.func.unix_timestamp())
 
 	# Relationships
-	game = sqlalchemy.orm.relationship("Game", foreign_keys=[game_id])
-	player = sqlalchemy.orm.relationship("GamePlayer", foreign_keys=[player_id])
-	map = sqlalchemy.orm.relationship("GameMap", foreign_keys=[map_id])
-	weapons = sqlalchemy.orm.relationship("GamePlayerMapWeapon", backref=sqlalchemy.orm.backref("playermap", uselist=False), primaryjoin="GamePlayerMapWeapon.player_id == GamePlayerMap.player_id")
+	weapons = sqlalchemy.orm.relationship("GamePlayerMapWeapon", backref=sqlalchemy.orm.backref("playermap", uselist=False))
 
 class GamePlayerWeapon(Base):
 
@@ -506,11 +476,6 @@ class GamePlayerWeapon(Base):
 	hits_head_delta = sqlalchemy.Column(sqlalchemy.types.Integer)
 	delta_reset = sqlalchemy.Column(sqlalchemy.types.BigInteger)
 
-	# Relationships
-	game = sqlalchemy.orm.relationship("Game", foreign_keys=[game_id])
-	player = sqlalchemy.orm.relationship("GamePlayer", foreign_keys=[player_id])
-	weapon = sqlalchemy.orm.relationship("GameWeapon", foreign_keys=[weapon_id])
-
 class GamePlayerMapWeapon(Base):
 
 	# Table structure
@@ -518,8 +483,8 @@ class GamePlayerMapWeapon(Base):
 	id = sqlalchemy.Column(sqlalchemy.types.BigInteger, primary_key=True)
 	game_id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, sqlalchemy.ForeignKey('games.id'))
 	player_id = sqlalchemy.Column(sqlalchemy.types.BigInteger, sqlalchemy.ForeignKey('games_players.id')) 
-	map_id = sqlalchemy.Column(sqlalchemy.types.Integer, sqlalchemy.ForeignKey('games_maps.id'))
-	weapon_id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, sqlalchemy.ForeignKey('games_weapons.id'))
+	map_id = sqlalchemy.Column(sqlalchemy.types.BigInteger, sqlalchemy.ForeignKey('games_players_maps.id'))
+	weapon_id = sqlalchemy.Column(sqlalchemy.types.BigInteger, sqlalchemy.ForeignKey('games_players_weapons.id'))
 	damage = sqlalchemy.Column(sqlalchemy.types.BigInteger)
 	kills = sqlalchemy.Column(sqlalchemy.types.Integer)
 	team_kills = sqlalchemy.Column(sqlalchemy.types.Integer)
@@ -535,12 +500,6 @@ class GamePlayerMapWeapon(Base):
 	hpk = sqlalchemy.Column(sqlalchemy.types.Float)
 	created_at = sqlalchemy.Column(sqlalchemy.types.BigInteger, default=sqlalchemy.func.unix_timestamp(), onupdate=sqlalchemy.func.unix_timestamp())
 	updated_at = sqlalchemy.Column(sqlalchemy.types.BigInteger, default=sqlalchemy.func.unix_timestamp())
-
-	# Relationships
-	game = sqlalchemy.orm.relationship("Game", foreign_keys=[game_id])
-	player = sqlalchemy.orm.relationship("GamePlayer", foreign_keys=[player_id])
-	map = sqlalchemy.orm.relationship("GameMap", foreign_keys=[map_id])
-	weapon = sqlalchemy.orm.relationship("GameWeapon", foreign_keys=[weapon_id])
 
 class GamePlayerRole(Base):
 
@@ -565,11 +524,6 @@ class GamePlayerRole(Base):
 	created_at = sqlalchemy.Column(sqlalchemy.types.BigInteger, default=sqlalchemy.func.unix_timestamp(), onupdate=sqlalchemy.func.unix_timestamp())
 	updated_at = sqlalchemy.Column(sqlalchemy.types.BigInteger, default=sqlalchemy.func.unix_timestamp())
 
-	# Relationships
-	game = sqlalchemy.orm.relationship("Game", foreign_keys=[game_id])
-	player = sqlalchemy.orm.relationship("GamePlayer", foreign_keys=[player_id])
-	role = sqlalchemy.orm.relationship("GameRole", foreign_keys=[role_id])
-
 class GamePlayerTeamaction(Base):
 
 	# Table structure
@@ -581,13 +535,6 @@ class GamePlayerTeamaction(Base):
 	action_id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, sqlalchemy.ForeignKey('games_actions.id'))
 	map_id = sqlalchemy.Column(sqlalchemy.types.Integer, sqlalchemy.ForeignKey('games_maps.id'))
 	count =  sqlalchemy.Column(sqlalchemy.types.Integer)
-
-	# Relationships
-	game = sqlalchemy.orm.relationship("Game", foreign_keys=[game_id])
-	player = sqlalchemy.orm.relationship("GamePlayer", foreign_keys=[player_id])
-	team = sqlalchemy.orm.relationship("GameTeam", foreign_keys=[team_id])
-	action = sqlalchemy.orm.relationship("GameAction", foreign_keys=[action_id])
-	map = sqlalchemy.orm.relationship("GameMap", foreign_keys=[map_id])
 
 class GameServer(Base):
 
@@ -633,7 +580,8 @@ class GameServer(Base):
 
 	# Relationships
 	players = sqlalchemy.orm.relationship("GameServerPlayer", backref=sqlalchemy.orm.backref("server", uselist=False))
-	map = global_winner = sqlalchemy.orm.relationship("GameMap", uselist=False, foreign_keys=[map_id])		
+	chats = sqlalchemy.orm.relationship("GameServerChat", backref=sqlalchemy.orm.backref("server", uselist=False))
+	map = sqlalchemy.orm.relationship("GameMap", uselist=False, foreign_keys=[map_id])		
 
 class GameServerPlayer(Base):
 
@@ -670,11 +618,6 @@ class GameServerPlayer(Base):
 	created_at = sqlalchemy.Column(sqlalchemy.types.BigInteger, default=sqlalchemy.func.unix_timestamp(), onupdate=sqlalchemy.func.unix_timestamp())
 	updated_at = sqlalchemy.Column(sqlalchemy.types.BigInteger, default=sqlalchemy.func.unix_timestamp())
 
-	# Relationships
-	role = sqlalchemy.orm.relationship("GameRole", backref=sqlalchemy.orm.backref("player", uselist=False), foreign_keys=[role_id])
-	team = sqlalchemy.orm.relationship("GameTeam", backref=sqlalchemy.orm.backref("player", uselist=False), foreign_keys=[team_id])
-	player = sqlalchemy.orm.relationship("GamePlayer", backref=sqlalchemy.orm.backref("server_player", uselist=False), foreign_keys=[player_id])
-
 class GameServerChat(Base):
 
 	# Table structure
@@ -688,8 +631,3 @@ class GameServerChat(Base):
 	message = sqlalchemy.Column(sqlalchemy.types.Text)
 	date = sqlalchemy.Column(sqlalchemy.types.BigInteger)
 
-	# Relationships
-	game = sqlalchemy.orm.relationship("Game", foreign_keys=[game_id])
-	player = sqlalchemy.orm.relationship("GamePlayer", foreign_keys=[player_id])
-	map = sqlalchemy.orm.relationship("GameMap", foreign_keys=[map_id])
-	server = sqlalchemy.orm.relationship("GameServer", foreign_keys=[server_id])

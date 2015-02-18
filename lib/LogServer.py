@@ -19,8 +19,10 @@ class LogServer(twisted.internet.protocol.DatagramProtocol):
 	def datagramReceived(self, data, (host, port)):
 		port = str(port)
 		# Check to see if we even support this remote server
-		server = self.session.query(GameServer).filter(hostname=host, port=port).first()
-		print server
+		server = self.session.query(GameServer).filter_by(hostname=host, port=port).first()
+		if server is None:
+			print termcolor.colored("Message from Unknown Server (%s:%s), Ignoring" % (host, port), 'yellow')
+			return
 
 		# Check to see if we have a thread in the 
 		# 	background already running for this server

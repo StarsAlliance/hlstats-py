@@ -19,7 +19,7 @@ sys.path.append(LIBDIR)
 import ConfigParser
 from twisted.internet import reactor
 from twisted.web import static, server
-
+import termcolor
 import sqlalchemy
 import sqlalchemy.sql
 import sqlalchemy.ext.declarative
@@ -36,7 +36,8 @@ config.read("%s/hlstats.ini" %(CFGDIR))
 
 engine = sqlalchemy.create_engine(config.get('database', 'uri'))
 
-from OrganizedModel import *
-
-print Base.metadata.sorted_tables
+from HLModels import *
+print termcolor.colored("Creating Tables...", 'green')
 Base.metadata.create_all(engine)
+print termcolor.colored("Tables Created", 'green')
+	
