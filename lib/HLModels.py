@@ -147,7 +147,7 @@ class GameAction(Base):
 	id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, primary_key=True)
 	game_id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, sqlalchemy.ForeignKey('games.id'))
 	code = sqlalchemy.Column(sqlalchemy.String(length=64))
-	name = sqlalchemy.Column(sqlalchemy.String(length=45))
+	name = sqlalchemy.Column(sqlalchemy.String(length=64))
 	player_reward = sqlalchemy.Column(sqlalchemy.types.SmallInteger)
 	team_reward = sqlalchemy.Column(sqlalchemy.types.SmallInteger)
 	team_id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, sqlalchemy.ForeignKey('games_teams.id'))
@@ -291,6 +291,7 @@ class GameMap(Base):
 	hits_stomach = sqlalchemy.Column(sqlalchemy.types.BigInteger)
 	hits_leftarm = sqlalchemy.Column(sqlalchemy.types.BigInteger)
 	hits_leftleg = sqlalchemy.Column(sqlalchemy.types.BigInteger)
+	hits_rightleg = sqlalchemy.Column(sqlalchemy.types.BigInteger)
 	kpd = sqlalchemy.Column(sqlalchemy.types.Float)
 	hpk = sqlalchemy.Column(sqlalchemy.types.Float)
 	bombs_planeted = sqlalchemy.Column(sqlalchemy.types.Integer)
@@ -355,6 +356,12 @@ class GameClan(Base):
 
 	# Relationships
 	players = sqlalchemy.orm.relationship("GamePlayer", backref=sqlalchemy.orm.backref("clan", uselist=False), primaryjoin="GameClan.id == GamePlayer.clan_id")
+
+class ClanPatterns(Base):
+	__tablename__ = 'clans_patterns'
+	id = sqlalchemy.Column(sqlalchemy.types.SmallInteger, primary_key=True)
+	position = sqlalchemy.Column(sqlalchemy.String(length=6))
+	pattern = sqlalchemy.Column(sqlalchemy.String(length=64))
 
 
 class GameHeatmapData(Base):

@@ -21,6 +21,8 @@ class LogParser(threading.Thread):
 			buf = ""
 			try:
 				message = self.queue.get(False)
+			except (KeyboardInterrupt):
+				return
 			except (Queue.Empty):
 				time.sleep(0.1)
 				continue
