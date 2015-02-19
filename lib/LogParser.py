@@ -4,7 +4,7 @@ import Queue
 import threading
 import timeit
 import time
-
+import importlib
 
 class LogParser(threading.Thread):
 
@@ -14,8 +14,15 @@ class LogParser(threading.Thread):
 		self.server = server
 		self.db = db
 		self.go = True
-		
+		# Load the engine and parser for this server
+		self.parser = importlib.import_module("%sParser" % (self.server.game.engine.code.upper()))
+	
 	def run(self):
+		# Initialize and Sync the server
+		self.parser.sync(self.server)
+
+		
+		# Process the messages
 		while self.go:
 			# Use a non-blocking fetch so we can always quit the loop
 			buf = ""
@@ -31,8 +38,9 @@ class LogParser(threading.Thread):
 
 			# Debug header
 			buf += termcolor.colored("Processing Message from %s:%s" % (message[1][0], message[1][1]), 'green') +"\n"
-	
-
+			
+			# Send the data to the parser
+			self.parser.parse(self.server, message)
 	
 			# Finished, create the end timer
 			buf += termcolor.colored("Finished processing message : %.2fms" % (round((timeit.default_timer()-start)*1000, 2)), 'green') + "\n"

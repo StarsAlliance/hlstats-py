@@ -13,7 +13,7 @@ class LogServer(twisted.internet.protocol.DatagramProtocol):
 	
 	def startProtocol(self):
 		self.parsers = {}
-		self.db = sqlalchemy.create_engine(self.config.get('database', 'uri'))
+		self.db = sqlalchemy.create_engine(self.config.get('database', 'uri'), echo=True)
 		self.session = sqlalchemy.orm.scoped_session(sqlalchemy.orm.sessionmaker(self.db))
 
 	def datagramReceived(self, data, (host, port)):
