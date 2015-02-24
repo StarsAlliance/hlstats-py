@@ -2,60 +2,92 @@
 import termcolor
 import Queue
 import threading
-import timeit
 import time
-import importlib
+import timeit
 
-class LogParser(threading.Thread):
+from Engine import Engine
+from GameServer import GameServer
+from Game import Game
+from Player import Player
+from GamePlayer import GamePlayer
+from GameMap import GameMap
+from GameWeapon import GameWeapon
 
-	def __init__(self, server, db):
-		super(self.__class__,self).__init__()
-		self.queue = Queue.Queue()
-		self.server = server
-		self.db = db
-		self.go = True
-		# Load the engine and parser for this server
-		self.parser = importlib.import_module("%sParser" % (self.server.game.engine.code.upper()))
-	
-	def run(self):
-		# Initialize and Sync the server
-		self.parser.sync(self.server)
 
-		
-		# Process the messages
-		while self.go:
-			# Use a non-blocking fetch so we can always quit the loop
-			buf = ""
-			try:
-				message = self.queue.get(False)
-			except (KeyboardInterrupt):
-				return
-			except (Queue.Empty):
-				time.sleep(0.1)
-				continue
-			# Start a timer
-			start = timeit.default_timer()
+class Parser(threading.Thread):
 
-			# Debug header
-			buf += termcolor.colored("Processing Message from %s:%s" % (message[1][0], message[1][1]), 'green') +"\n"
-			
-			# Send the data to the parser
-			self.parser.parse(self.server, message)
-	
-			# Finished, create the end timer
-			buf += termcolor.colored("Finished processing message : %.2fms" % (round((timeit.default_timer()-start)*1000, 2)), 'green') + "\n"
+    def __init__(self, address):
+        super(Parser, self).__init__()
+        self.address = address
+        self.queue = Queue.Queue()
+        self.go = True
+        self.time = 0.0
+        self.startup = timeit.default_timer()
+        self.last_message = time.time()
+        self.server = GameServer()
+        self.game = Game()
+        self.engine = Engine()
+        self.player = Player()
+        self.game_player = GamePlayer()
+        self.game_map = GameMap()
+        self.game_weapon = GameWeapon()
+        self.cur_server = self.server.get(address=self.address)
+        self.cur_game = self.game.get(id=self.cur_server['game_id'])
 
-			#footer
-			buf += termcolor.colored("--------------------------------------", 'green')
+    def run(self):
+        start = timeit.default_timer()
+        self.sync()
+        # Process the messages
+        while self.go:
+            self.last_message = time.time()
+            # Use a non-blocking fetch so we can always quit the loop
+            buf = ""
+            try:
+                try:
+                    message = self.queue.get(False)
+                except (KeyboardInterrupt):
+                    return
+                except (Queue.Empty):
+                    try:
+                        time.sleep(0.1)
+                        continue
+                    except:
+                        pass
+            except:
+                pass
 
-			#done
-			self.queue.task_done()
+            # Start a timer
+            start = timeit.default_timer()
 
-			# Print
-			print(buf)
+            buf += self.parse(message)
+            # Finished, create the end timer
+            self.time += (timeit.default_timer()-start)
 
-	def put(self, data):
-		self.queue.put(data)
+            #done
+            self.queue.task_done()
+            # Print
+            if buf:
+                print(buf)
 
-	def stop(self):
-		self.go = False;
+    def put(self, data):
+        self.queue.put(data)
+
+    def stop(self):
+        elapsed = (timeit.default_timer()-self.startup)
+        print termcolor.colored(
+            "Thread was running for %10.4f seconds. %10.4f was spent processing or blocked. (%6.2f%%): %s" %
+            (round(elapsed, 4), round(self.time, 4), round((self.time / elapsed * 100), 2), self.address), 'red')
+        self.go = False
+    
+    def stats(self):
+        elapsed = (timeit.default_timer()-self.startup)
+        print termcolor.colored(
+            "Thread running for %10.4f seconds. %10.4f has been spent processing or blocked. (%6.2f%%): %s" %
+            (round(elapsed, 4), round(self.time, 4), round((self.time / elapsed * 100), 2), self.address), 'red')
+        
+    def parse(self, message):
+        return ""
+
+    def getLastMessageTime(self):
+        return self.last_message
+

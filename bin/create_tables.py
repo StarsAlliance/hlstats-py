@@ -40,4 +40,3 @@ from HLModels import *
 print termcolor.colored("Creating Tables...", 'green')
 Base.metadata.create_all(engine)
 print termcolor.colored("Tables Created", 'green')
-	
