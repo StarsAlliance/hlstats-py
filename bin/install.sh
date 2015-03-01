@@ -1,7 +1,17 @@
 #!/bin/bash
+
+echo -n "Installing python-valve..."
 cd /tmp
-git clone https://github.com/Holiverh/python-valve.git
+echo -n "Cloning..."
+git clone https://github.com/Holiverh/python-valve.git > /dev/null 2>&1 
 cd python-valve
-python setup.py install
+echo -n "Installing Libraries..."
+python setup.py install > /dev/null
+if [[ $? -ne 0 ]]; then
+	echo "Failed."
+	exit
+fi
 cd /tmp
+echo -n "Cleaning Up..."
 rm -Rf python-valve
+echo "Done."
