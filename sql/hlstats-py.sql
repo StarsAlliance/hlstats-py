@@ -138,6 +138,7 @@ CREATE TABLE `games` (
   `hits_leftarm` bigint(20) NOT NULL DEFAULT '0',
   `hits_leftleg` bigint(20) NOT NULL DEFAULT '0',
   `hits_rightleg` bigint(20) NOT NULL DEFAULT '0',
+  `hits_rightarm` bigint(20) NOT NULL DEFAULT '0',
   `kpd` float NOT NULL DEFAULT '0',
   `hpk` float NOT NULL DEFAULT '0',
   `hidden` tinyint(1) NOT NULL DEFAULT '0',
@@ -155,7 +156,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (1,'css','Counter-Strike: Source',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(2,'hl2mp','Half-Life 2 Multiplayer',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(3,'tf','Team Fortress 2',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(4,'hl2ctf','Half-Life 2 Capture the flag',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(5,'dods','Day of Defeat: Source',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(6,'insmod','Insurgency: Modern Infantry Combat',2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(7,'ff','Fortress Forever',2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(8,'hidden','The Hidden: Source',2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(9,'zps','Zombie Panic! Source',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(10,'aoc','Age of Chivalry',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(11,'cstrike','Counter-Strike',1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(12,'tfc','Team Fortress Classic',1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(13,'dod','Day of Defeat',2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(14,'ns','Natural Selection',1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(15,'l4d','Left 4 Dead',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(16,'l4d2','Left 4 Dead 2',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(17,'fof','Fistful of Frags',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(18,'ges','GoldenEye: Source',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(19,'bg2','Battle Grounds 2',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(20,'sgtls','Stargate: The Last Stand',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(21,'dystopia','Dystopia',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(22,'nts','NeoTokyo',2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(23,'pvkii','Pirates, Vikings, & Knights II',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(24,'csp','CSPromod',2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(25,'valve','Half-Life 1 Multiplayer',1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(26,'nd','Nuclear Dawn',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(27,'csgo','Counter-Strike: Global Offensive',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(28,'dinodday','Dino D-Day',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+INSERT INTO `games` VALUES (1,'css','Counter-Strike: Source',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(2,'hl2mp','Half-Life 2 Multiplayer',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(3,'tf','Team Fortress 2',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(4,'hl2ctf','Half-Life 2 Capture the flag',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(5,'dods','Day of Defeat: Source',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(6,'insmod','Insurgency: Modern Infantry Combat',2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(7,'ff','Fortress Forever',2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(8,'hidden','The Hidden: Source',2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(9,'zps','Zombie Panic! Source',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(10,'aoc','Age of Chivalry',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(11,'cstrike','Counter-Strike',1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(12,'tfc','Team Fortress Classic',1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(13,'dod','Day of Defeat',2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(14,'ns','Natural Selection',1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(15,'l4d','Left 4 Dead',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(16,'l4d2','Left 4 Dead 2',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(17,'fof','Fistful of Frags',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(18,'ges','GoldenEye: Source',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(19,'bg2','Battle Grounds 2',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(20,'sgtls','Stargate: The Last Stand',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(21,'dystopia','Dystopia',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(22,'nts','NeoTokyo',2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(23,'pvkii','Pirates, Vikings, & Knights II',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(24,'csp','CSPromod',2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(25,'valve','Half-Life 1 Multiplayer',1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(26,'nd','Nuclear Dawn',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(27,'csgo','Counter-Strike: Global Offensive',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(28,'dinodday','Dino D-Day',3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -405,6 +406,7 @@ CREATE TABLE `games_clans` (
   `hits_leftarm` bigint(20) NOT NULL DEFAULT '0',
   `hits_leftleg` bigint(20) NOT NULL DEFAULT '0',
   `hits_rightleg` bigint(20) NOT NULL DEFAULT '0',
+  `hits_rightarm` bigint(20) NOT NULL DEFAULT '0',
   `kpd` float NOT NULL DEFAULT '0',
   `hpk` float NOT NULL DEFAULT '0',
   `created_at` bigint(20) NOT NULL,
@@ -661,6 +663,8 @@ CREATE TABLE `games_players` (
   `hits_stomach` bigint(20) NOT NULL DEFAULT '0',
   `hits_leftarm` bigint(20) NOT NULL DEFAULT '0',
   `hits_leftleg` bigint(20) NOT NULL DEFAULT '0',
+  `hits_rightleg` bigint(20) NOT NULL DEFAULT '0',
+  `hits_rightarm` bigint(20) NOT NULL DEFAULT '0',
   `kpd` float NOT NULL DEFAULT '0',
   `hpk` float NOT NULL DEFAULT '0',
   `skill` int(11) NOT NULL DEFAULT '0',
@@ -975,6 +979,8 @@ CREATE TABLE `games_players_maps` (
   `hits_stomach` bigint(20) NOT NULL DEFAULT '0',
   `hits_leftarm` bigint(20) NOT NULL DEFAULT '0',
   `hits_leftleg` bigint(20) NOT NULL DEFAULT '0',
+  `hits_rightleg` bigint(20) NOT NULL DEFAULT '0',
+  `hits_rightarm` bigint(20) NOT NULL DEFAULT '0',
   `kpd` float NOT NULL DEFAULT '0',
   `hpk` float NOT NULL DEFAULT '0',
   `created_at` bigint(20) NOT NULL,
@@ -1143,6 +1149,8 @@ CREATE TABLE `games_players_roles` (
   `hits_stomach` bigint(20) NOT NULL DEFAULT '0',
   `hits_leftarm` bigint(20) NOT NULL DEFAULT '0',
   `hits_leftleg` bigint(20) NOT NULL DEFAULT '0',
+  `hits_rightleg` bigint(20) NOT NULL DEFAULT '0',
+  `hits_rightarm` bigint(20) NOT NULL DEFAULT '0',
   `kpd` float NOT NULL DEFAULT '0',
   `hpk` float NOT NULL DEFAULT '0',
   `created_at` bigint(20) NOT NULL,
@@ -1265,6 +1273,8 @@ CREATE TABLE `games_players_weapons` (
   `hits_stomach` bigint(20) NOT NULL DEFAULT '0',
   `hits_leftarm` bigint(20) NOT NULL DEFAULT '0',
   `hits_leftleg` bigint(20) NOT NULL DEFAULT '0',
+  `hits_rightleg` bigint(20) NOT NULL DEFAULT '0',
+  `hits_rightarm` bigint(20) NOT NULL DEFAULT '0',
   `kpd` float NOT NULL DEFAULT '0',
   `hpk` float NOT NULL DEFAULT '0',
   `created_at` bigint(20) NOT NULL,
@@ -1382,6 +1392,7 @@ CREATE TABLE `games_roles` (
   `hits_leftarm` bigint(20) NOT NULL DEFAULT '0',
   `hits_leftleg` bigint(20) NOT NULL DEFAULT '0',
   `hits_rightleg` bigint(20) NOT NULL DEFAULT '0',
+  `hits_rightarm` bigint(20) NOT NULL DEFAULT '0',
   `kpd` float NOT NULL DEFAULT '0',
   `hpk` float NOT NULL DEFAULT '0',
   `created_at` bigint(20) NOT NULL,
@@ -1398,7 +1409,7 @@ CREATE TABLE `games_roles` (
 
 LOCK TABLES `games_roles` WRITE;
 /*!40000 ALTER TABLE `games_roles` DISABLE KEYS */;
-INSERT INTO `games_roles` VALUES (1,3,'engineer','Engineer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(2,3,'spy','Spy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(3,3,'soldier','Soldier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(4,3,'scout','Scout',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(5,3,'demoman','Demo Man',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(6,3,'sniper','Sniper',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(7,3,'medic','Medic',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(8,3,'pyro','Pyro',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(9,3,'heavyweapons','Heavy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(10,5,'Random','Random',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(11,5,'#class_allied_garand','American Rifleman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(12,5,'#class_allied_thompson','American Master Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(13,5,'#class_allied_heavy','American Support Infantry',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(14,5,'#class_allied_sniper','American Sniper',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(15,5,'#class_allied_mg','American Machine Gunner',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(16,5,'#class_allied_bazooka','American Bazooka ',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(17,5,'#class_axis_kar98','Axis Grenadier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(18,5,'#class_axis_mp40','Axis Unteroffizier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(19,5,'#class_axis_mp44','Axis Sturmtruppe',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(20,5,'#class_axis_sniper','Axis Scharfschütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(21,5,'#class_axis_mg42','Axis MG42-Schütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(22,5,'#class_axis_pschreck','Axis Panzerschreck',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(23,7,'engineer','Engineer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(24,7,'spy','Spy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(25,7,'soldier','Soldier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(26,7,'scout','Scout',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(27,7,'demoman','Demo Man',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(28,7,'sniper','Sniper',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(29,7,'medic','Medic',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(30,7,'pyro','Pyro',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(31,7,'hwguy','HWGuy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(32,7,'civilian','Civilian',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(33,12,'Scout','Scout',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(34,12,'Sniper','Sniper',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(35,12,'Soldier','Soldier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(36,12,'Demoman','Demoman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(37,12,'Medic','Medic',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(38,12,'HWGuy','HWGuy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(39,12,'Pyro','Pyro',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(40,12,'Spy','Spy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(41,12,'Engineer','Engineer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(42,12,'Civilian','The Hunted',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(43,13,'Random','Random',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(44,13,'#class_allied_garand','American Rifleman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(45,13,'#class_allied_carbine','American Staff Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(46,13,'#class_allied_thompson','American Master Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(47,13,'#class_allied_grease','American Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(48,13,'#class_allied_sniper','American Sniper',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(49,13,'#class_allied_heavy','American Support Infantry',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(50,13,'#class_allied_mg','American Machine Gunner',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(51,13,'#class_alliedpara_garand','American Para Rifleman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(52,13,'#class_alliedpara_carbine','American Para Staff Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(53,13,'#class_alliedpara_thompson','American Para Master Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(54,13,'#class_alliedpara_grease','American Para Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(55,13,'#class_alliedpara_spring','American Para Sniper',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(56,13,'#class_alliedpara_bar','American Para Support Infantry',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(57,13,'#class_alliedpara_30cal','American Para Machine Gunner',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(58,13,'#class_brit_light','British Rifleman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(59,13,'#class_brit_medium','British Sergeant Major',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(60,13,'#class_brit_sniper','British Marksman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(61,13,'#class_brit_heavy','British Gunner',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(62,13,'#class_axis_kar98','Axis Grenadier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(63,13,'#class_axis_k43','Axis Stosstruppe',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(64,13,'#class_axis_mp40','Axis Unteroffizier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(65,13,'#class_axis_mp44','Axis Sturmtruppe',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(66,13,'#class_axis_sniper','Axis Scharfschütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(67,13,'#class_axis_mg34','Axis MG34-Schütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(68,13,'#class_axis_mg42','Axis MG42-Schütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(69,13,'#class_axispara_kar98','Axis Para Grenadier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(70,13,'#class_axispara_k43','Axis Para Stosstruppe',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(71,13,'#class_axispara_mp40','Axis Para Unteroffizier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(72,13,'#class_axispara_mp44','Axis Para Sturmtruppe',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(73,13,'#class_axispara_scopedkar','Axis Para Scharfschütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(74,13,'#class_axispara_fg42bipod','Axis Para Fg42-Zweinbein',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(75,13,'#class_axispara_fg42scope','Axis Para Fg42-Zielfernrohr',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(76,13,'#class_axispara_mg34','Axis Para MG34-Schütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(77,13,'#class_axispara_mg42','Axis Para MG42-Schütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(78,14,'soldier','Soldier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(79,14,'commander','Commander',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(80,14,'skulk','Skulk',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(81,14,'gorge','Gorge',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(82,14,'lerk','Lerk',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(83,14,'fade','Fade',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(84,14,'onos','Onos',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(85,14,'gestate','Gestate',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(86,15,'NamVet','Bill',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(87,15,'TeenGirl','Zoey',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(88,15,'Biker','Francis',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(89,15,'Manager','Louis',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(90,15,'GAS','Smoker',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(91,15,'EXPLODING','Boomer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(92,15,'HUNTER','Hunter',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(93,15,'TANK','Tank',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(94,15,'infected','Infected Horde',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(95,15,'witch','Witch',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(96,16,'NamVet','Bill',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(97,16,'TeenGirl','Zoey',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(98,16,'Biker','Francis',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(99,16,'Manager','Louis',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(100,16,'Producer','Rochelle',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(101,16,'Mechanic','Ellis',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(102,16,'Coach','Coach',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(103,16,'Gambler','Nick',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(104,16,'SMOKER','Smoker',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(105,16,'BOOMER','Boomer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(106,16,'HUNTER','Hunter',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(107,16,'TANK','Tank',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(108,16,'CHARGER','Charger',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(109,16,'SPITTER','Spitter',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(110,16,'JOCKEY','Jockey',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(111,16,'infected','Infected Horde',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(112,16,'witch','Witch',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(113,18,'jaws','Jaws',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(114,18,'bond','Bond',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(115,18,'boris','Boris',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(116,18,'Mayday','May Day',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(117,18,'Mishkin','Mishkin',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(118,18,'oddjob','Oddjob',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(119,18,'ourumov','Ourumov',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(120,18,'samedi','Samedi',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(121,18,'valentin','Valentin',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(122,21,'1','Light',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(123,21,'2','Medium',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(124,21,'3','Heavy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(125,10,'Longbowman','Longbowman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(126,10,'Crossbowman','Crossbowman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(127,10,'Javelineer','Javelineer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(128,10,'Man at Arms','Man at Arms',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(129,10,'Sergeant','Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(130,10,'Guardsman','Guardsman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(131,10,'Crusader','Crusader',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(132,10,'Knight','Knight',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(133,10,'Heavy Knight','Heavy Knight',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(134,23,'Berserker','Berserker',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(135,23,'Gestir','Gestir',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(136,23,'Huscarl','Huscarl',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(137,23,'Captain','Captain',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(138,23,'Skirmisher','Skirmisher',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(139,23,'Archer','Archer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(140,23,'Heavy Knight','Heavy Knight',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(141,26,'ASSAULT','Assault',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(142,26,'EXO','Exo',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(143,26,'STEALTH','Stealth',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(144,26,'SUPPORT','Support',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(145,28,'#class_blue_class2','Cpl. Joe Spencer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(146,28,'#class_blue_class1','Cpt. Jack Hardgrave',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(147,28,'#class_red_class11','Microraptor',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(148,28,'#class_red_class10','Compsognathus',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(149,28,'#class_red_class7','Stygimoloch',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(150,28,'#class_red_class6','Dilophosaurus',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(151,28,'#class_red_class5','Desmatosuchus',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(152,28,'#class_red_class4','Velociraptor',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(153,28,'#class_red_class3','Hpt.Fw. Wolfgang von Graff',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(154,28,'#class_red_class2','OLt. Karl Hissmann',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(155,28,'#class_red_class1','Hptm. Kurt Streicher',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(156,28,'#class_blue_class3','Cpt. Nigel Blithe-Crossley',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(157,28,'#class_blue_class4','Ilona Vike',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(158,28,'#class_blue_class5','Camille Brun',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(159,28,'#class_blue_class6','Jakob Frank',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(160,28,'#class_blue_class7','Trigger',0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442);
+INSERT INTO `games_roles` VALUES (1,3,'engineer','Engineer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(2,3,'spy','Spy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(3,3,'soldier','Soldier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(4,3,'scout','Scout',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(5,3,'demoman','Demo Man',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(6,3,'sniper','Sniper',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(7,3,'medic','Medic',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(8,3,'pyro','Pyro',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(9,3,'heavyweapons','Heavy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(10,5,'Random','Random',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(11,5,'#class_allied_garand','American Rifleman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(12,5,'#class_allied_thompson','American Master Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(13,5,'#class_allied_heavy','American Support Infantry',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(14,5,'#class_allied_sniper','American Sniper',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(15,5,'#class_allied_mg','American Machine Gunner',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(16,5,'#class_allied_bazooka','American Bazooka ',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(17,5,'#class_axis_kar98','Axis Grenadier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(18,5,'#class_axis_mp40','Axis Unteroffizier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(19,5,'#class_axis_mp44','Axis Sturmtruppe',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(20,5,'#class_axis_sniper','Axis Scharfschütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(21,5,'#class_axis_mg42','Axis MG42-Schütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(22,5,'#class_axis_pschreck','Axis Panzerschreck',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(23,7,'engineer','Engineer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(24,7,'spy','Spy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(25,7,'soldier','Soldier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(26,7,'scout','Scout',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(27,7,'demoman','Demo Man',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(28,7,'sniper','Sniper',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(29,7,'medic','Medic',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(30,7,'pyro','Pyro',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(31,7,'hwguy','HWGuy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(32,7,'civilian','Civilian',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(33,12,'Scout','Scout',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(34,12,'Sniper','Sniper',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(35,12,'Soldier','Soldier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(36,12,'Demoman','Demoman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(37,12,'Medic','Medic',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(38,12,'HWGuy','HWGuy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(39,12,'Pyro','Pyro',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(40,12,'Spy','Spy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(41,12,'Engineer','Engineer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(42,12,'Civilian','The Hunted',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(43,13,'Random','Random',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(44,13,'#class_allied_garand','American Rifleman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(45,13,'#class_allied_carbine','American Staff Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(46,13,'#class_allied_thompson','American Master Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(47,13,'#class_allied_grease','American Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(48,13,'#class_allied_sniper','American Sniper',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(49,13,'#class_allied_heavy','American Support Infantry',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(50,13,'#class_allied_mg','American Machine Gunner',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(51,13,'#class_alliedpara_garand','American Para Rifleman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(52,13,'#class_alliedpara_carbine','American Para Staff Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(53,13,'#class_alliedpara_thompson','American Para Master Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(54,13,'#class_alliedpara_grease','American Para Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(55,13,'#class_alliedpara_spring','American Para Sniper',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(56,13,'#class_alliedpara_bar','American Para Support Infantry',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(57,13,'#class_alliedpara_30cal','American Para Machine Gunner',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(58,13,'#class_brit_light','British Rifleman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(59,13,'#class_brit_medium','British Sergeant Major',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(60,13,'#class_brit_sniper','British Marksman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(61,13,'#class_brit_heavy','British Gunner',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(62,13,'#class_axis_kar98','Axis Grenadier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(63,13,'#class_axis_k43','Axis Stosstruppe',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(64,13,'#class_axis_mp40','Axis Unteroffizier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(65,13,'#class_axis_mp44','Axis Sturmtruppe',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(66,13,'#class_axis_sniper','Axis Scharfschütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(67,13,'#class_axis_mg34','Axis MG34-Schütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(68,13,'#class_axis_mg42','Axis MG42-Schütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(69,13,'#class_axispara_kar98','Axis Para Grenadier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(70,13,'#class_axispara_k43','Axis Para Stosstruppe',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(71,13,'#class_axispara_mp40','Axis Para Unteroffizier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(72,13,'#class_axispara_mp44','Axis Para Sturmtruppe',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(73,13,'#class_axispara_scopedkar','Axis Para Scharfschütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(74,13,'#class_axispara_fg42bipod','Axis Para Fg42-Zweinbein',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(75,13,'#class_axispara_fg42scope','Axis Para Fg42-Zielfernrohr',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(76,13,'#class_axispara_mg34','Axis Para MG34-Schütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(77,13,'#class_axispara_mg42','Axis Para MG42-Schütze',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(78,14,'soldier','Soldier',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(79,14,'commander','Commander',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(80,14,'skulk','Skulk',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(81,14,'gorge','Gorge',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(82,14,'lerk','Lerk',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(83,14,'fade','Fade',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(84,14,'onos','Onos',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(85,14,'gestate','Gestate',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(86,15,'NamVet','Bill',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(87,15,'TeenGirl','Zoey',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(88,15,'Biker','Francis',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(89,15,'Manager','Louis',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(90,15,'GAS','Smoker',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(91,15,'EXPLODING','Boomer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(92,15,'HUNTER','Hunter',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(93,15,'TANK','Tank',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(94,15,'infected','Infected Horde',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(95,15,'witch','Witch',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(96,16,'NamVet','Bill',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(97,16,'TeenGirl','Zoey',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(98,16,'Biker','Francis',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(99,16,'Manager','Louis',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(100,16,'Producer','Rochelle',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(101,16,'Mechanic','Ellis',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(102,16,'Coach','Coach',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(103,16,'Gambler','Nick',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(104,16,'SMOKER','Smoker',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(105,16,'BOOMER','Boomer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(106,16,'HUNTER','Hunter',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(107,16,'TANK','Tank',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(108,16,'CHARGER','Charger',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(109,16,'SPITTER','Spitter',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(110,16,'JOCKEY','Jockey',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(111,16,'infected','Infected Horde',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(112,16,'witch','Witch',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(113,18,'jaws','Jaws',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(114,18,'bond','Bond',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(115,18,'boris','Boris',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(116,18,'Mayday','May Day',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(117,18,'Mishkin','Mishkin',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(118,18,'oddjob','Oddjob',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(119,18,'ourumov','Ourumov',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(120,18,'samedi','Samedi',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(121,18,'valentin','Valentin',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(122,21,'1','Light',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(123,21,'2','Medium',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(124,21,'3','Heavy',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(125,10,'Longbowman','Longbowman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(126,10,'Crossbowman','Crossbowman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(127,10,'Javelineer','Javelineer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(128,10,'Man at Arms','Man at Arms',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(129,10,'Sergeant','Sergeant',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(130,10,'Guardsman','Guardsman',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(131,10,'Crusader','Crusader',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(132,10,'Knight','Knight',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(133,10,'Heavy Knight','Heavy Knight',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(134,23,'Berserker','Berserker',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(135,23,'Gestir','Gestir',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(136,23,'Huscarl','Huscarl',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(137,23,'Captain','Captain',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(138,23,'Skirmisher','Skirmisher',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(139,23,'Archer','Archer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(140,23,'Heavy Knight','Heavy Knight',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(141,26,'ASSAULT','Assault',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(142,26,'EXO','Exo',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(143,26,'STEALTH','Stealth',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(144,26,'SUPPORT','Support',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(145,28,'#class_blue_class2','Cpl. Joe Spencer',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(146,28,'#class_blue_class1','Cpt. Jack Hardgrave',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(147,28,'#class_red_class11','Microraptor',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(148,28,'#class_red_class10','Compsognathus',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(149,28,'#class_red_class7','Stygimoloch',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(150,28,'#class_red_class6','Dilophosaurus',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(151,28,'#class_red_class5','Desmatosuchus',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(152,28,'#class_red_class4','Velociraptor',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(153,28,'#class_red_class3','Hpt.Fw. Wolfgang von Graff',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(154,28,'#class_red_class2','OLt. Karl Hissmann',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(155,28,'#class_red_class1','Hptm. Kurt Streicher',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(156,28,'#class_blue_class3','Cpt. Nigel Blithe-Crossley',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(157,28,'#class_blue_class4','Ilona Vike',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(158,28,'#class_blue_class5','Camille Brun',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(159,28,'#class_blue_class6','Jakob Frank',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442),(160,28,'#class_blue_class7','Trigger',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1423647442,1423647442);
 /*!40000 ALTER TABLE `games_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -1448,44 +1459,48 @@ DROP TABLE IF EXISTS `games_servers`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `games_servers` (
   `id` smallint(6) NOT NULL AUTO_INCREMENT,
-  `game_id` smallint(6) DEFAULT NULL,
-  `name` text COLLATE utf8_unicode_ci,
-  `address` varchar(127) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `game_id` smallint(6) NOT NULL,
+  `name` text COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(127) COLLATE utf8_unicode_ci NOT NULL,
   `hostname_public` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `map_id` int(11) DEFAULT NULL,
   `rcon_password` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sort_order` smallint(6) DEFAULT NULL,
-  `rounds` int(11) DEFAULT NULL,
-  `play_time` int(11) DEFAULT NULL,
-  `kills` int(11) DEFAULT NULL,
-  `team_kills` int(11) DEFAULT NULL,
-  `deaths` int(11) DEFAULT NULL,
-  `suicides` int(11) DEFAULT NULL,
-  `shots` bigint(20) DEFAULT NULL,
-  `hits_head` bigint(20) DEFAULT NULL,
-  `hits_chest` bigint(20) DEFAULT NULL,
-  `hits_stomach` bigint(20) DEFAULT NULL,
-  `hits_leftarm` bigint(20) DEFAULT NULL,
-  `hits_leftleg` bigint(20) DEFAULT NULL,
-  `kpd` float DEFAULT NULL,
-  `hpk` float DEFAULT NULL,
-  `act_players` smallint(6) DEFAULT NULL,
-  `max_players` smallint(6) DEFAULT NULL,
-  `fps` float DEFAULT NULL,
-  `uptime` int(11) DEFAULT NULL,
-  `bombs_planeted` int(11) DEFAULT NULL,
-  `bombs_defused` int(11) DEFAULT NULL,
-  `ct_wins` int(11) DEFAULT NULL,
-  `ts_wins` int(11) DEFAULT NULL,
-  `ct_shots` bigint(20) DEFAULT NULL,
-  `ct_hits` bigint(20) DEFAULT NULL,
-  `ts_shots` bigint(20) DEFAULT NULL,
-  `ts_hits` bigint(20) DEFAULT NULL,
-  `created_at` bigint(20) DEFAULT NULL,
-  `updated_at` bigint(20) DEFAULT NULL,
+  `rounds` int(11) NOT NULL DEFAULT '0',
+  `play_time` int(11) NOT NULL DEFAULT '0',
+  `kills` int(11) NOT NULL DEFAULT '0',
+  `team_kills` int(11) NOT NULL DEFAULT '0',
+  `deaths` int(11) NOT NULL DEFAULT '0',
+  `suicides` int(11) NOT NULL DEFAULT '0',
+  `shots` bigint(20) NOT NULL DEFAULT '0',
+  `hits_head` bigint(20) NOT NULL DEFAULT '0',
+  `hits_chest` bigint(20) NOT NULL DEFAULT '0',
+  `hits_stomach` bigint(20) NOT NULL DEFAULT '0',
+  `hits_leftarm` bigint(20) NOT NULL DEFAULT '0',
+  `hits_leftleg` bigint(20) NOT NULL DEFAULT '0',
+  `hits_rightleg` bigint(20) NOT NULL DEFAULT '0',
+  `hits_rightarm` bigint(20) NOT NULL DEFAULT '0',
+  `kpd` float NOT NULL DEFAULT '0',
+  `hpk` float NOT NULL DEFAULT '0',
+  `act_players` smallint(6) NOT NULL DEFAULT '0',
+  `max_players` smallint(6) NOT NULL DEFAULT '0',
+  `fps` float NOT NULL DEFAULT '0',
+  `uptime` int(11) NOT NULL DEFAULT '0',
+  `bombs_planted` int(11) NOT NULL DEFAULT '0',
+  `bombs_defused` int(11) NOT NULL DEFAULT '0',
+  `ct_wins` int(11) NOT NULL DEFAULT '0',
+  `ts_wins` int(11) NOT NULL DEFAULT '0',
+  `ct_shots` bigint(20) NOT NULL DEFAULT '0',
+  `ct_hits` bigint(20) NOT NULL DEFAULT '0',
+  `ts_shots` bigint(20) NOT NULL DEFAULT '0',
+  `ts_hits` bigint(20) NOT NULL DEFAULT '0',
+  `created_at` bigint(20) NOT NULL,
+  `updated_at` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `game_id` (`game_id`),
-  KEY `map_id` (`map_id`)
+  KEY `fk_games_servers_map_id_idx` (`map_id`),
+  KEY `fk_games_servers_game_id_idx` (`game_id`),
+  CONSTRAINT `fk_games_servers_game_id` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_games_servers_map_id` FOREIGN KEY (`map_id`) REFERENCES `games_maps` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1497,6 +1512,43 @@ LOCK TABLES `games_servers` WRITE;
 /*!40000 ALTER TABLE `games_servers` DISABLE KEYS */;
 /*!40000 ALTER TABLE `games_servers` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`%`*/ /*!50003 TRIGGER `games_servers_BINS` BEFORE INSERT ON `games_servers` FOR EACH ROW
+begin
+	set new.created_at = UNIX_TIMESTAMP();
+	set new.updated_at = UNIX_TIMESTAMP();
+end */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`%`*/ /*!50003 TRIGGER `games_servers_BUPD` BEFORE UPDATE ON `games_servers` FOR EACH ROW
+begin
+	set new.updated_at = UNIX_TIMESTAMP();
+end */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `games_servers_chats`
@@ -1745,4 +1797,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-01 14:40:00
+-- Dump completed on 2015-03-04 12:25:06
